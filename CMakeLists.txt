@@ -37,6 +37,7 @@ add_library(${PROJECT_NAME} SHARED
         src/mappoint.cpp
         src/camera.cpp
         src/visual_odometry.cpp
+        src/MapDrawer.cpp
         )
 target_link_libraries(${PROJECT_NAME} ${THIRD_PARTY_LIBS})
 

@@ -45,7 +45,7 @@ public:
     Frame::Ptr  curr_;      // current frame 
 
     vector<cv::KeyPoint>    keypoints_curr_;    // keypoints in current frame
-    Mat                     descriptors_curr_;  // descriptor in current frame 
+    Mat                     descriptors_curr_;  // descriptor in current frame
     
     cv::FlannBasedMatcher   matcher_flann_;     // flann matcher
     vector<MapPoint::Ptr>   match_3dpts_;       // matched 3d points 
