@@ -55,7 +55,10 @@ public:
     int num_inliers_;        // number of inlier features in icp
     int num_lost_;           // number of lost times
     
-    // parameters 
+    // parameters
+    int iniThFAST;
+    int minThFAST;
+    int ThDepth_;
     int num_of_features_;   // number of features
     double scale_factor_;   // scale in image pyramid
     int level_pyramid_;     // number of pyramid levels

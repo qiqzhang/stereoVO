@@ -16,14 +16,14 @@ namespace myslam
 
 // 双目的初始化
 Frame::Frame(const cv::Mat &imLeft, const cv::Mat &imRight, ORBextractor* extractorLeft,
-             ORBextractor* extractorRight,  const float &bf, const float &thDepth ,
-             const double time_stamp, SE3 T_c_w,
-             Camera::Ptr camera )
-        :mpORBextractorLeft(extractorLeft),mpORBextractorRight(extractorRight),mbf(bf),
+             ORBextractor* extractorRight,   const float &thDepth ,
+             const double time_stamp, Camera::Ptr camera ,SE3 T_c_w )
+        :mpORBextractorLeft(extractorLeft),mpORBextractorRight(extractorRight),
      mThDepth(thDepth), time_stamp_(time_stamp),T_c_w_(T_c_w),camera_(camera),
          is_key_frame_(false)  {
         // Frame ID
         id_ = nNextId++;
+        mbf = camera->bf_;
         mb = mbf / camera_->fx_;
         color_ = imLeft;
         // Scale Level Info

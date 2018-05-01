@@ -18,8 +18,8 @@ public:
     // Constructor for stereo cameras.
     Frame(const cv::Mat &imLeft, const cv::Mat &imRight,
           ORBextractor* extractorLeft, ORBextractor* extractorRight,
-          const float &bf, const float &thDepth ,const double time_stamp = 0,
-          SE3 T_c_w=SE3(), Camera::Ptr camera=nullptr);//缺省函数参数在头文件里面如果定义的话，就不用在类实现里面定义第二次
+           const float &thDepth ,const double time_stamp = 0,Camera::Ptr camera=nullptr,
+          SE3 T_c_w=SE3());//缺省函数参数在头文件里面如果定义的话，就不用在类实现里面定义第二次
     ~Frame();
 
 

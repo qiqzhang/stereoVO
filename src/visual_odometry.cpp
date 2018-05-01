@@ -15,6 +15,9 @@ namespace myslam
 VisualOdometry::VisualOdometry() :
     state_ ( INITIALIZING ), ref_ ( nullptr ), curr_ ( nullptr ), map_ ( new Map ), num_lost_ ( 0 ), num_inliers_ ( 0 ), matcher_flann_ ( new cv::flann::LshIndexParams ( 5,10,2 ) )
 {
+    iniThFAST           = Config::get<int>("ORBextractor.iniThFAST");
+    minThFAST           = Config::get<int>("ORBextractor.minThFAST");
+    ThDepth_            = Config::get<int>("ThDepth");
     num_of_features_    = Config::get<int> ( "number_of_features" );
     scale_factor_       = Config::get<double> ( "scale_factor" );
     level_pyramid_      = Config::get<int> ( "level_pyramid" );

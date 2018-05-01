@@ -32,6 +32,7 @@ class Camera
 public:
     typedef std::shared_ptr<Camera> Ptr;
     float   fx_, fy_, cx_, cy_;
+    float  bf_;
     static float invfx;
     static float invfy;
     cv::Mat mDistCoef;

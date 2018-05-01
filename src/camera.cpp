@@ -25,10 +25,11 @@ namespace myslam
     
 Camera::Camera()
 {
-    fx_ = Config::get<float>("camera.fx");
-    fy_ = Config::get<float>("camera.fy");
-    cx_ = Config::get<float>("camera.cx");
-    cy_ = Config::get<float>("camera.cy");
+    fx_ = Config::get<float>("Camera.fx");
+    fy_ = Config::get<float>("Camera.fy");
+    cx_ = Config::get<float>("Camera.cx");
+    cy_ = Config::get<float>("Camera.cy");
+    bf_ = Config::get<float>("Camera.bf");
 
 }
 
