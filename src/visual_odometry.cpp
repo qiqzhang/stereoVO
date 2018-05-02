@@ -270,7 +270,7 @@ void VisualOdometry::addMapPoints()
     {
         if ( matched[i] == true )   
             continue;
-        double d = ref_->mvDepth[i];//把当前帧当中没有被匹配到的点（即地图中没有的点）添加进地图
+        double d = curr_->mvDepth[i];//把当前帧当中没有被匹配到的点（即地图中没有的点）添加进地图
         if ( d<0 )  
             continue;
         Vector3d p_world = ref_->camera_->pixel2world (
