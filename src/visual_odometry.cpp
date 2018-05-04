@@ -27,6 +27,9 @@ VisualOdometry::VisualOdometry() :
     key_frame_min_rot   = Config::get<double> ( "keyframe_rotation" );
     key_frame_min_trans = Config::get<double> ( "keyframe_translation" );
     map_point_erase_ratio_ = Config::get<double> ( "map_point_erase_ratio" );
+    //Initial View thread
+    mpViewer = new MapDrawer();
+    mptViewer = new thread(&myslam::MapDrawer::Run,mpViewer);
 }
 
 VisualOdometry::~VisualOdometry()

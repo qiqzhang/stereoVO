@@ -41,8 +41,10 @@ add_library(${PROJECT_NAME} SHARED
         )
 target_link_libraries(${PROJECT_NAME} ${THIRD_PARTY_LIBS})
 
-add_executable(stereo Examples/stereo_vo.cpp)
-target_link_libraries(stereo ${PROJECT_NAME})
+add_executable(vo_pangolin Examples/vo_pangolin.cpp)
+target_link_libraries(vo_pangolin ${PROJECT_NAME})
+#[[add_executable(stereo Examples/stereo_vo.cpp)
+target_link_libraries(stereo ${PROJECT_NAME})]]
 
 #[[
 set(SOURCE_FILES main.cpp)

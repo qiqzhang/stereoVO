@@ -30,6 +30,10 @@ Camera::Camera()
     cx_ = Config::get<float>("Camera.cx");
     cy_ = Config::get<float>("Camera.cy");
     bf_ = Config::get<float>("Camera.bf");
+    K = ( cv::Mat_<double> ( 3,3 ) << fx_, 0, cx_,
+                                       0, fy_, cy_,
+                                       0,0,1
+    );
 
 }
 

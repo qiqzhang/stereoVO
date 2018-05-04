@@ -49,6 +49,7 @@ public:
 
     // Number of KeyPoints.
     int N; ///< KeyPoints数量
+    Mat K;
 
     Camera();
     Camera ( float fx, float fy, float cx, float cy) :
