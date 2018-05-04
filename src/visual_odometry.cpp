@@ -62,7 +62,11 @@ bool VisualOdometry::addFrame ( Frame::Ptr frame )
         if ( checkEstimatedPose() == true ) // a good estimation
         {
             curr_->T_c_w_ = T_c_w_estimated_;
+            //set Viewer camera pose
+            mpViewer->SetCurrentCameraPose(T_c_w_estimated_);
             optimizeMap();
+            //set Viewer Mappoints
+            mpViewer->SetCurrentMappoints(map_->map_points_);
             num_lost_ = 0;
             if ( checkKeyFrame() == true ) // is a key-frame
             {
@@ -258,6 +262,12 @@ void VisualOdometry::addKeyFrame()
             map_->insertMapPoint( map_point );
         }
     }
+    //insert MapDrawer's twc
+    Eigen::Matrix3d Rwc;
+    Eigen::Vector3d twc;
+    Rwc = curr_->T_c_w_.rotation_matrix().transpose();
+    twc = -Rwc * curr_->T_c_w_.translation();
+    mpViewer->addKeyframePos(twc);
     
     map_->insertKeyFrame ( curr_ );
     ref_ = curr_;
