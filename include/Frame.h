@@ -39,6 +39,8 @@ public:
     // If there is a match, depth is computed and the right coordinate associated to the left keypoint is stored.
     void ComputeStereoMatches();
 
+    //bool operator<(const Frame* f) const;
+
 public:
     typedef std::shared_ptr<Frame> Ptr;
     double                         time_stamp_; // when it is recorded
@@ -82,6 +84,8 @@ public:
     float mfScaleFactor;//图像提金字塔的尺度因子
     vector<float> mvScaleFactors;
     vector<float> mvInvScaleFactors;
+    vector<float> mvLevelSigma2;
+    vector<float> mvInvLevelSigma2;
 
 
 

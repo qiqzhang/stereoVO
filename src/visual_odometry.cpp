@@ -62,13 +62,15 @@ bool VisualOdometry::addFrame ( Frame::Ptr frame )
         if ( checkEstimatedPose() == true ) // a good estimation
         {
             curr_->T_c_w_ = T_c_w_estimated_;
+            //更新每个地图点中的观测帧及该店在该帧当中的键值
+            //updateMappoints();
             //set Viewer camera pose
             mpViewer->SetCurrentCameraPose(T_c_w_estimated_);
             optimizeMap();
             //set Viewer Mappoints
             mpViewer->SetCurrentMappoints(map_->map_points_);
             num_lost_ = 0;
-            if ( checkKeyFrame() == true ) // is a key-frame
+            if ( checkKeyFrame() == true /*|| match_2dkp_index_.size() < 100*/) // is a key-frame,第二个条件是为了将关键帧与地图点相关联
             {
                 addKeyFrame();
             }
@@ -259,6 +261,9 @@ void VisualOdometry::addKeyFrame()
             MapPoint::Ptr map_point = MapPoint::createMapPoint(
                 p_world, n, descriptors_curr_.row(i).clone(), curr_.get()
             );
+            //添加能观测该地图点的当前帧，以及在当前帧中的索引
+            map_point->mObservations[curr_.get()] = i;
+
             map_->insertMapPoint( map_point );
         }
     }
@@ -268,7 +273,15 @@ void VisualOdometry::addKeyFrame()
     Rwc = curr_->T_c_w_.rotation_matrix().transpose();
     twc = -Rwc * curr_->T_c_w_.translation();
     mpViewer->addKeyframePos(twc);
-    
+
+   /* //更新地图点的共视关键帧
+    for(auto mappoint:match_3dpts_){
+
+        mappoint->observed_frames_.push_back(curr_.get());
+
+    }
+    */
+
     map_->insertKeyFrame ( curr_ );
     ref_ = curr_;
 }
@@ -295,6 +308,9 @@ void VisualOdometry::addMapPoints()
         MapPoint::Ptr map_point = MapPoint::createMapPoint(
             p_world, n, descriptors_curr_.row(i).clone(), curr_.get()
         );
+        //添加能观测该地图点的当前帧，以及在当前帧中的索引
+        //map_point->mObservations[curr_.get()] = i;
+
         map_->insertMapPoint( map_point );
     }
 }
@@ -347,6 +363,30 @@ double VisualOdometry::getViewAngle ( Frame::Ptr frame, MapPoint::Ptr point )
     n.normalize();
     return acos( n.transpose()*point->norm_ );
 }
+/*//更新地图点中观测帧以及相应键值
+void VisualOdometry::updateMappoints() {
+    for(int i = 0; i < match_2dkp_index_.size();i++){
+        match_3dpts_[i]->mObservations[curr_.get()] = match_2dkp_index_[i];
+    }
+}*/
+
+
+/*//局部BA
+void VisualOdometry::LocalBundleAdjustment(Frame::Ptr frame, Map::Ptr map) {
+
+        std::set<Frame*> localFrames;
+        unordered_map<unsigned long,MapPoint::Ptr>& localMappoints = map->map_points_;
+
+        for(auto iter = localMappoints.begin();iter != localMappoints.end();iter++){
+            MapPoint::Ptr &mMappoint = iter->second;
+
+        }
+
+
+
+
+    }*/
 
 
 }
+

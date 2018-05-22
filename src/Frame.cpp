@@ -31,7 +31,8 @@ Frame::Frame(const cv::Mat &imLeft, const cv::Mat &imRight, ORBextractor* extrac
         mfScaleFactor = mpORBextractorLeft->GetScaleFactor();
         mvScaleFactors = mpORBextractorLeft->GetScaleFactors();
         mvInvScaleFactors = mpORBextractorLeft->GetInverseScaleFactors();
-
+        mvLevelSigma2 = mpORBextractorLeft->GetScaleSigmaSquares();
+        mvInvLevelSigma2 = mpORBextractorLeft->GetInverseScaleSigmaSquares();
 
         // ORB extraction
         // 同时对左右目提特征
@@ -306,8 +307,10 @@ void Frame::ComputeStereoMatches()
         }
     }
 }
-
-
+/*//set集合要用到
+bool Frame::operator<(const Frame *f) const {
+    return id_< f->id_;
+}*/
 
 
 

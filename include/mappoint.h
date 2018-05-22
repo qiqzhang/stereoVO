@@ -37,8 +37,10 @@ public:
     Vector3d    norm_;      // Normal of viewing direction 
     Mat         descriptor_; // Descriptor for matching 
     
-    list<Frame*>    observed_frames_;   // key-frames that can observe this point 
-    
+    list<Frame*>    observed_frames_;   // frames that can observe this point
+    //用于localBA关联的观测值
+    std::map<Frame*,size_t > mObservations;
+
     int         matched_times_;     // being an inliner in pose estimation
     int         visible_times_;     // being visible in current frame 
     

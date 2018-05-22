@@ -76,6 +76,9 @@ protected:
     
     double getViewAngle( Frame::Ptr frame, MapPoint::Ptr point );
 
+    void updateMappoints();
+    void LocalBundleAdjustment(Frame::Ptr frame,Map::Ptr map);
+
 
     
 };
