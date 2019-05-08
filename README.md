@@ -13,9 +13,9 @@ StereoVO is a real-time stereo visual odometry based part of ORB-SLAM2 and slamb
 - OpenCV3.x:  sudo apt-get install libopencv-dev(or from source)
 - g2o  :sudo apt-get install libcxsparse-dev libqt4-dev libcholmod3.0.6 libsuitesparse-dev qt4-qmake
 - eigen3  :sudo apt-get install libeigen3-dev
-- Pangolin(for visualization): <https://github.com/stevenlovegrove/Pangolin/>
+- Pangolin(for visualization): <https://github.com/stevenlovegrove/Pangolin>
 
-Please follow  :   <https://github.com/raulmur/ORB_SLAM2/>
+Please follow  :   <https://github.com/raulmur/ORB_SLAM2>
 
 #### 1.2 Build
 
@@ -33,7 +33,7 @@ Please follow  :   <https://github.com/raulmur/ORB_SLAM2/>
 
 ### 2 Usage
 
-Run on kitti dataset from:  <http://www.cvlibs.net/datasets/kitti/eval_object.php/>
+Run on kitti dataset from:  <http://www.cvlibs.net/datasets/kitti/eval_object.php>
 
 You should modify the dataset _dir in KITTI xx-xx.yaml in the source directory
 
@@ -41,7 +41,7 @@ And run ./vo_pangolin under bin.
 
 ### 3 Experiments
 
-It is evaluated by evo tools(<https://github.com/MichaelGrupp/evo/>)
+It is evaluated by evo tools(<https://github.com/MichaelGrupp/evo>)
 
 
 ![trajectory](https://github.com/SiuKeungm/stereoVO/blob/master/2018-05-18%2019_42_48____________.png)
